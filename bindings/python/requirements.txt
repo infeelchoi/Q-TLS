@@ -1,0 +1,13 @@
+# Q-TLS Python Binding - Requirements
+# ====================================
+#
+# Production dependencies for Q-TLS Python bindings
+#
+# Copyright 2025 QSIGN Project
+# Licensed under the Apache License, Version 2.0
+
+# CFFI for C library interface
+cffi>=1.15.0
+
+# Cryptography library for additional utilities
+cryptography>=3.4.0

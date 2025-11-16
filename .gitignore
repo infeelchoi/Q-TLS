@@ -1,0 +1,80 @@
+# 빌드 디렉토리
+build/
+cmake-build-*/
+
+# 컴파일된 파일
+*.o
+*.so
+*.a
+*.dylib
+*.dll
+*.exe
+
+# IDE 설정
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 인증서 및 키 (예제 제외)
+*.key
+*.crt
+*.pem
+*.p12
+*.jks
+!examples/**/*.key
+!examples/**/*.crt
+!examples/**/*.pem
+
+# 로그 파일
+*.log
+logs/
+
+# 임시 파일
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Go
+*.exe
+*.exe~
+*.test
+*.out
+vendor/
+
+# 테스트 결과
+test-results/
+coverage/
+*.gcda
+*.gcno
+*.gcov
+
+# Benchmark 결과
+benchmark_results.txt
+*.perf
+
+# Documentation
+docs/build/
+site/
