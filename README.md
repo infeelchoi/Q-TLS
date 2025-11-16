@@ -136,6 +136,69 @@ make test
 sudo make install
 ```
 
+### ⚡ Q-TLS CLI 도구 (OpenSSL 스타일)
+
+Q-TLS는 OpenSSL처럼 쉽게 사용할 수 있는 통합 CLI 도구를 제공합니다.
+
+#### 30초 안에 전체 PKI 구축
+
+```bash
+# 간편한 자동화 스크립트 사용
+./scripts/install-deps.sh     # 의존성 설치
+./scripts/build.sh             # 전체 빌드
+
+# CA + 서버 + 클라이언트 인증서 한 번에 생성
+./tools/qtls.sh quickstart -d ./my-pki
+
+# 또는 CLI 도구 빌드 후
+cd tools && make && sudo make install
+qtls quickstart -d ./my-pki
+```
+
+#### 키 쌍 생성
+
+```bash
+# Kyber768 KEM 키 생성
+qtls keygen kyber768 -o mykey
+# → mykey.pub, mykey.key 생성
+
+# Dilithium3 서명 키 생성
+qtls keygen dilithium3 -o signing-key
+```
+
+#### 인증서 생성
+
+```bash
+# CA 인증서
+qtls certgen ca -cn "My Root CA" -o ca
+
+# 서버 인증서 (SAN 포함)
+qtls certgen server \
+  -cn server.example.com \
+  --ca-cert ca.crt --ca-key ca.key \
+  --san www.example.com --san api.example.com \
+  -o server
+
+# 클라이언트 인증서 (mTLS용)
+qtls certgen client \
+  -cn "client-001" \
+  --ca-cert ca.crt --ca-key ca.key \
+  -o client
+```
+
+#### 빠른 데모
+
+```bash
+# 전체 데모 실행
+./examples/quick-demo.sh
+
+# 또는 단계별로
+./tools/qtls.sh quickstart -d ./demo-pki -cn localhost
+chmod 600 ./demo-pki/*.key
+```
+
+자세한 사용법은 [QUICKSTART.md](QUICKSTART.md) 및 [tools/README.md](tools/README.md)를 참조하세요.
+
 ### 사용 예제
 
 #### 서버 예제
